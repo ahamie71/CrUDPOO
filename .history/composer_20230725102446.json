@@ -1,0 +1,15 @@
+{
+    "name": "ahmadhamieh/CrudPoo",
+    "autoload": {
+        "psr-4": {
+            "Foot\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "ahamie71",
+            "email": "ahmad.hamieh2002@hotmail.com"
+        }
+    ],
+    "require": {}
+}
