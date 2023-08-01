@@ -1,0 +1,310 @@
+{
+    "sourceFile": "src/Controllers/ProductController.php",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 73,
+            "patches": [
+                {
+                    "date": 1690808524780,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1690808533642,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -109,10 +109,71 @@\n         }\n     }\n }\n \n+public function getProductById($id)\n+    {\n+        // Récupérer le produit en fonction de l'ID et renvoyer le résultat en JSON\n+        $productRepository = new ProductRepository();\n+        $product = $productRepository->getProductById($id);\n \n+        header('Content-Type: application/json');\n \n+        if ($product) {\n+            echo json_encode($product);\n+        } else {\n+            http_response_code(404);\n+            echo json_encode(['error' => 'Produit non trouvé']);\n+        }\n+    }\n \n+    // ...\n }\n+ProductRepository.php :\n \n+php\n+Copy code\n+// ProductRepository.php\n \n+// ... Importation des classes et espaces de noms ...\n+\n+class ProductRepository\n+{\n+    // ...\n+\n+    public function getProductById($id)\n+    {\n+        // Vous devez implémenter cette méthode pour récupérer un produit depuis la base de données en fonction de son idProduct.\n+        // Renvoyez le produit sous forme de tableau associatif ou d'objet.\n+        // Si le produit n'est pas trouvé, renvoyez NULL.\n+    }\n+\n+    // ...\n+}\n+Assurez-vous que les méthodes du contrôleur et du modèle (ProductRepository) sont correctement implémentées pour interagir avec la base de données et renvoyer les données du produit au format JSON. N'oubliez pas de configurer correctement les routes dans index.php pour que les requêtes soient dirigées vers les bonnes méthodes du contrôleur.\n+\n+Testez ensuite votre page API REST en utilisant des outils tels que Postman ou CURL pour effectuer des appels GET avec différents idProduct et vérifiez les réponses JSON renvoyées par l'API.\n+\n+\n+\n+\n+User\n+header('Content-Type: application/json');\n+ChatGPT\n+header('Content-Type: application/json'); est une instruction PHP utilisée pour définir le type de contenu de la réponse HTTP que le serveur envoie au client. Dans le contexte de notre exemple d'API REST, cette instruction est utilisée pour indiquer que la réponse renvoyée sera au format JSON.\n+\n+Lorsqu'un client (tel que Postman ou un navigateur web) envoie une requête GET à notre API en spécifiant le type de contenu qu'il attend dans la réponse, notre API doit répondre en conséquence. En ajoutant header('Content-Type: application/json'); dans le code du contrôleur avant de renvoyer la réponse JSON, nous indiquons au client que la réponse sera au format JSON.\n+\n+En spécifiant le type de contenu, le client saura comment interpréter la réponse qu'il reçoit. Dans ce cas, en utilisant application/json, le client comprendra qu'il doit traiter la réponse comme un objet JSON et pourra facilement l'analyser et extraire les données qu'il contient.\n+\n+Assurez-vous d'utiliser header('Content-Type: application/json'); avant de renvoyer la réponse JSON dans toutes les méthodes du contrôleur où vous renvoyez des données au format JSON. Cela garantira que votre API respecte les conventions et que le client peut correctement traiter les réponses.\n+\n+\n+\n+\n+\n+\n+\n+\n+}\n+\n+\n"
+                },
+                {
+                    "date": 1690808553124,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -127,53 +127,9 @@\n     }\n \n     // ...\n }\n-ProductRepository.php :\n \n-php\n-Copy code\n-// ProductRepository.php\n \n-// ... Importation des classes et espaces de noms ...\n-\n-class ProductRepository\n-{\n-    // ...\n-\n-    public function getProductById($id)\n-    {\n-        // Vous devez implémenter cette méthode pour récupérer un produit depuis la base de données en fonction de son idProduct.\n-        // Renvoyez le produit sous forme de tableau associatif ou d'objet.\n-        // Si le produit n'est pas trouvé, renvoyez NULL.\n-    }\n-\n-    // ...\n }\n-Assurez-vous que les méthodes du contrôleur et du modèle (ProductRepository) sont correctement implémentées pour interagir avec la base de données et renvoyer les données du produit au format JSON. N'oubliez pas de configurer correctement les routes dans index.php pour que les requêtes soient dirigées vers les bonnes méthodes du contrôleur.\n \n-Testez ensuite votre page API REST en utilisant des outils tels que Postman ou CURL pour effectuer des appels GET avec différents idProduct et vérifiez les réponses JSON renvoyées par l'API.\n \n-\n-\n-\n-User\n-header('Content-Type: application/json');\n-ChatGPT\n-header('Content-Type: application/json'); est une instruction PHP utilisée pour définir le type de contenu de la réponse HTTP que le serveur envoie au client. Dans le contexte de notre exemple d'API REST, cette instruction est utilisée pour indiquer que la réponse renvoyée sera au format JSON.\n-\n-Lorsqu'un client (tel que Postman ou un navigateur web) envoie une requête GET à notre API en spécifiant le type de contenu qu'il attend dans la réponse, notre API doit répondre en conséquence. En ajoutant header('Content-Type: application/json'); dans le code du contrôleur avant de renvoyer la réponse JSON, nous indiquons au client que la réponse sera au format JSON.\n-\n-En spécifiant le type de contenu, le client saura comment interpréter la réponse qu'il reçoit. Dans ce cas, en utilisant application/json, le client comprendra qu'il doit traiter la réponse comme un objet JSON et pourra facilement l'analyser et extraire les données qu'il contient.\n-\n-Assurez-vous d'utiliser header('Content-Type: application/json'); avant de renvoyer la réponse JSON dans toutes les méthodes du contrôleur où vous renvoyez des données au format JSON. Cela garantira que votre API respecte les conventions et que le client peut correctement traiter les réponses.\n-\n-\n-\n-\n-\n-\n-\n-\n-}\n-\n-\n"
+                },
+                {
+                    "date": 1690808695872,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,8 +11,10 @@\n Class ProductController extends AbstractController\n {\n \n \n+\n+    \n    \n     public function DisplayProducts()\n     { \n \n@@ -129,7 +131,7 @@\n     // ...\n }\n \n \n-}\n \n \n+\n"
+                },
+                {
+                    "date": 1690809035526,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,10 +11,27 @@\n Class ProductController extends AbstractController\n {\n \n \n+    public function getProduct()\n+    {\n+        if (isset($_GET['id'])) {\n+            $idProduct = $_GET['id'];\n+            $productRepository = new ProductRepository();\n+            $product = $productRepository->getProductById($idProduct);\n+            \n \n-    \n+            header('Content-Type: application/json');\n+\n+            if ($product) {\n+                echo json_encode($product);\n+            } else {\n+                http_response_code(404);\n+                echo json_encode(['error' => 'Produit non trouvé']);\n+            }\n+        }\n+    }\n+\n    \n     public function DisplayProducts()\n     { \n \n"
+                },
+                {
+                    "date": 1690809042328,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,9 +17,9 @@\n         if (isset($_GET['id'])) {\n             $idProduct = $_GET['id'];\n             $productRepository = new ProductRepository();\n             $product = $productRepository->getProductById($idProduct);\n-            \n+            var_dump($product)\n \n             header('Content-Type: application/json');\n \n             if ($product) {\n"
+                },
+                {
+                    "date": 1690809064425,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,10 +16,11 @@\n     {\n         if (isset($_GET['id'])) {\n             $idProduct = $_GET['id'];\n             $productRepository = new ProductRepository();\n+            var_dump($product);\n             $product = $productRepository->getProductById($idProduct);\n-            var_dump($product)\n+            var_dump($product);\n \n             header('Content-Type: application/json');\n \n             if ($product) {\n"
+                },
+                {
+                    "date": 1690809079912,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,9 +16,9 @@\n     {\n         if (isset($_GET['id'])) {\n             $idProduct = $_GET['id'];\n             $productRepository = new ProductRepository();\n-            var_dump($product);\n+           \n             $product = $productRepository->getProductById($idProduct);\n             var_dump($product);\n \n             header('Content-Type: application/json');\n"
+                },
+                {
+                    "date": 1690809086035,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,9 +14,9 @@\n \n     public function getProduct()\n     {\n         if (isset($_GET['id'])) {\n-            $idProduct = $_GET['id'];\n+            $idProduct = $_GET['idProduct'];\n             $productRepository = new ProductRepository();\n            \n             $product = $productRepository->getProductById($idProduct);\n             var_dump($product);\n"
+                },
+                {
+                    "date": 1690809093413,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,12 +13,11 @@\n \n \n     public function getProduct()\n     {\n-        if (isset($_GET['id'])) {\n+        if (isset($_GET['idProduct'])) {\n             $idProduct = $_GET['idProduct'];\n             $productRepository = new ProductRepository();\n-           \n             $product = $productRepository->getProductById($idProduct);\n             var_dump($product);\n \n             header('Content-Type: application/json');\n"
+                },
+                {
+                    "date": 1690809118556,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,27 +11,10 @@\n Class ProductController extends AbstractController\n {\n \n \n-    public function getProduct()\n-    {\n-        if (isset($_GET['idProduct'])) {\n-            $idProduct = $_GET['idProduct'];\n-            $productRepository = new ProductRepository();\n-            $product = $productRepository->getProductById($idProduct);\n-            var_dump($product);\n+    \n \n-            header('Content-Type: application/json');\n-\n-            if ($product) {\n-                echo json_encode($product);\n-            } else {\n-                http_response_code(404);\n-                echo json_encode(['error' => 'Produit non trouvé']);\n-            }\n-        }\n-    }\n-\n    \n     public function DisplayProducts()\n     { \n \n"
+                },
+                {
+                    "date": 1690809123629,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,12 +10,8 @@\n \n Class ProductController extends AbstractController\n {\n \n-\n-    \n-\n-   \n     public function DisplayProducts()\n     { \n \n        \n"
+                },
+                {
+                    "date": 1690809172086,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,8 +16,9 @@\n \n        \n       $productRepository = new ProductRepository;\n       $products = $productRepository->getProducts();\n+      var\n       $this->render($products);\n       \n     }\n \n"
+                },
+                {
+                    "date": 1690809177218,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,9 +16,9 @@\n \n        \n       $productRepository = new ProductRepository;\n       $products = $productRepository->getProducts();\n-      var\n+      var_dump($products)\n       $this->render($products);\n       \n     }\n \n"
+                },
+                {
+                    "date": 1690809193848,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,9 +16,8 @@\n \n        \n       $productRepository = new ProductRepository;\n       $products = $productRepository->getProducts();\n-      var_dump($products)\n       $this->render($products);\n       \n     }\n \n"
+                },
+                {
+                    "date": 1690809230682,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,16 +12,14 @@\n {\n \n     public function DisplayProducts()\n     { \n-\n-       \n       $productRepository = new ProductRepository;\n       $products = $productRepository->getProducts();\n       $this->render($products);\n       \n     }\n-\n+   \n    public  function addProduct()\n {\n    \n \n"
+                },
+                {
+                    "date": 1690809320627,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,16 +10,39 @@\n \n Class ProductController extends AbstractController\n {\n \n+\n+    public function getProduct()\n+    {\n+        if (isset($_GET['idProduct'])) {\n+            $idProduct = $_GET['idProduct'];\n+            $productRepository = new ProductRepository();\n+            $product = $productRepository->getProductById($idProduct);\n+            var_dump($product);\n+\n+            header('Content-Type: application/json');\n+\n+            if ($product) {\n+                echo json_encode($product);\n+            } else {\n+                http_response_code(404);\n+                echo json_encode(['error' => 'Produit non trouvé']);\n+            }\n+        }\n+    }\n+\n+   \n     public function DisplayProducts()\n     { \n+\n+       \n       $productRepository = new ProductRepository;\n       $products = $productRepository->getProducts();\n       $this->render($products);\n       \n     }\n-   \n+\n    public  function addProduct()\n {\n    \n \n"
+                },
+                {
+                    "date": 1690809463357,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,27 +11,39 @@\n Class ProductController extends AbstractController\n {\n \n \n+   // ProductController.php\n+\n+use CrudPOO\\Model\\ProductRepository;\n+\n+class ProductController extends AbstractController\n+{\n+    // Autres méthodes du contrôleur...\n+\n     public function getProduct()\n     {\n-        if (isset($_GET['idProduct'])) {\n-            $idProduct = $_GET['idProduct'];\n+        if (isset($_GET['id'])) {\n+            $idProduct = $_GET['id'];\n             $productRepository = new ProductRepository();\n             $product = $productRepository->getProductById($idProduct);\n-            var_dump($product);\n \n+            // Définir le type de contenu de la réponse en JSON\n             header('Content-Type: application/json');\n \n             if ($product) {\n+                // Renvoyer le produit en réponse au format JSON\n                 echo json_encode($product);\n             } else {\n+                // Renvoyer une réponse JSON avec un message d'erreur si le produit n'est pas trouvé\n                 http_response_code(404);\n                 echo json_encode(['error' => 'Produit non trouvé']);\n             }\n         }\n     }\n+}\n \n+\n    \n     public function DisplayProducts()\n     { \n \n"
+                },
+                {
+                    "date": 1690809468412,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,16 +11,10 @@\n Class ProductController extends AbstractController\n {\n \n \n-   // ProductController.php\n+ ..\n \n-use CrudPOO\\Model\\ProductRepository;\n-\n-class ProductController extends AbstractController\n-{\n-    // Autres méthodes du contrôleur...\n-\n     public function getProduct()\n     {\n         if (isset($_GET['id'])) {\n             $idProduct = $_GET['id'];\n"
+                },
+                {
+                    "date": 1690809879609,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,16 +11,16 @@\n Class ProductController extends AbstractController\n {\n \n \n- ..\n+ \n \n     public function getProduct()\n     {\n         if (isset($_GET['id'])) {\n             $idProduct = $_GET['id'];\n             $productRepository = new ProductRepository();\n-            $product = $productRepository->getProductById($idProduct);\n+            $product = $productRepository->getProductById($idProduct)\n \n             // Définir le type de contenu de la réponse en JSON\n             header('Content-Type: application/json');\n \n@@ -33,11 +33,11 @@\n                 echo json_encode(['error' => 'Produit non trouvé']);\n             }\n         }\n     }\n-}\n \n \n+\n    \n     public function DisplayProducts()\n     { \n \n"
+                },
+                {
+                    "date": 1690809884760,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -18,9 +18,10 @@\n     {\n         if (isset($_GET['id'])) {\n             $idProduct = $_GET['id'];\n             $productRepository = new ProductRepository();\n-            $product = $productRepository->getProductById($idProduct)\n+            $product = $productRepository->getProductById($idProduct);\n+            var\n \n             // Définir le type de contenu de la réponse en JSON\n             header('Content-Type: application/json');\n \n"
+                },
+                {
+                    "date": 1690809889853,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -19,9 +19,9 @@\n         if (isset($_GET['id'])) {\n             $idProduct = $_GET['id'];\n             $productRepository = new ProductRepository();\n             $product = $productRepository->getProductById($idProduct);\n-            var\n+            var_dump($prod)\n \n             // Définir le type de contenu de la réponse en JSON\n             header('Content-Type: application/json');\n \n"
+                },
+                {
+                    "date": 1690809907094,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -19,9 +19,9 @@\n         if (isset($_GET['id'])) {\n             $idProduct = $_GET['id'];\n             $productRepository = new ProductRepository();\n             $product = $productRepository->getProductById($idProduct);\n-            var_dump($prod)\n+            getProductById($idProduct)\n \n             // Définir le type de contenu de la réponse en JSON\n             header('Content-Type: application/json');\n \n"
+                },
+                {
+                    "date": 1690809913031,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -19,9 +19,9 @@\n         if (isset($_GET['id'])) {\n             $idProduct = $_GET['id'];\n             $productRepository = new ProductRepository();\n             $product = $productRepository->getProductById($idProduct);\n-            getProductById($idProduct)\n+            \n \n             // Définir le type de contenu de la réponse en JSON\n             header('Content-Type: application/json');\n \n"
+                },
+                {
+                    "date": 1690809919327,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -23,9 +23,9 @@\n             \n \n             // Définir le type de contenu de la réponse en JSON\n             header('Content-Type: application/json');\n-\n+           \n             if ($product) {\n                 // Renvoyer le produit en réponse au format JSON\n                 echo json_encode($product);\n             } else {\n"
+                },
+                {
+                    "date": 1690809924600,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -19,9 +19,9 @@\n         if (isset($_GET['id'])) {\n             $idProduct = $_GET['id'];\n             $productRepository = new ProductRepository();\n             $product = $productRepository->getProductById($idProduct);\n-            \n+            var\n \n             // Définir le type de contenu de la réponse en JSON\n             header('Content-Type: application/json');\n            \n"
+                },
+                {
+                    "date": 1690809931047,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -19,9 +19,9 @@\n         if (isset($_GET['id'])) {\n             $idProduct = $_GET['id'];\n             $productRepository = new ProductRepository();\n             $product = $productRepository->getProductById($idProduct);\n-            var\n+            var_dump($idProduct)\n \n             // Définir le type de contenu de la réponse en JSON\n             header('Content-Type: application/json');\n            \n"
+                },
+                {
+                    "date": 1690809938079,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -19,9 +19,9 @@\n         if (isset($_GET['id'])) {\n             $idProduct = $_GET['id'];\n             $productRepository = new ProductRepository();\n             $product = $productRepository->getProductById($idProduct);\n-            var_dump($idProduct)\n+            \n \n             // Définir le type de contenu de la réponse en JSON\n             header('Content-Type: application/json');\n            \n"
+                },
+                {
+                    "date": 1690809944621,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -33,8 +33,9 @@\n                 http_response_code(404);\n                 echo json_encode(['error' => 'Produit non trouvé']);\n             }\n         }\n+        var_dump($pr)\n     }\n \n \n \n"
+                },
+                {
+                    "date": 1690809950941,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -33,9 +33,10 @@\n                 http_response_code(404);\n                 echo json_encode(['error' => 'Produit non trouvé']);\n             }\n         }\n-        var_dump($pr)\n+        var_dump($product);\n+        \n     }\n \n \n \n"
+                },
+                {
+                    "date": 1690809957992,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -34,9 +34,9 @@\n                 echo json_encode(['error' => 'Produit non trouvé']);\n             }\n         }\n         var_dump($product);\n-        \n+       \n     }\n \n \n \n"
+                },
+                {
+                    "date": 1690809963698,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -19,9 +19,9 @@\n         if (isset($_GET['id'])) {\n             $idProduct = $_GET['id'];\n             $productRepository = new ProductRepository();\n             $product = $productRepository->getProductById($idProduct);\n-            \n+             die('je')\n \n             // Définir le type de contenu de la réponse en JSON\n             header('Content-Type: application/json');\n            \n"
+                },
+                {
+                    "date": 1690809991385,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -19,9 +19,9 @@\n         if (isset($_GET['id'])) {\n             $idProduct = $_GET['id'];\n             $productRepository = new ProductRepository();\n             $product = $productRepository->getProductById($idProduct);\n-             die('je')\n+             \n \n             // Définir le type de contenu de la réponse en JSON\n             header('Content-Type: application/json');\n            \n"
+                },
+                {
+                    "date": 1690810002939,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,12 +17,10 @@\n     public function getProduct()\n     {\n         if (isset($_GET['id'])) {\n             $idProduct = $_GET['id'];\n-            $productRepository = new ProductRepository();\n+            \n             $product = $productRepository->getProductById($idProduct);\n-             \n-\n             // Définir le type de contenu de la réponse en JSON\n             header('Content-Type: application/json');\n            \n             if ($product) {\n"
+                },
+                {
+                    "date": 1690810644845,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,27 +15,29 @@\n  \n \n     public function getProduct()\n     {\n-        if (isset($_GET['id'])) {\n-            $idProduct = $_GET['id'];\n-            \n-            $product = $productRepository->getProductById($idProduct);\n-            // Définir le type de contenu de la réponse en JSON\n-            header('Content-Type: application/json');\n-           \n-            if ($product) {\n-                // Renvoyer le produit en réponse au format JSON\n-                echo json_encode($product);\n+        if ($_SERVER['REQUEST_METHOD'] === 'GET') {\n+            if (isset($_GET['id'])) {\n+                $idProduct = $_GET['id'];\n+                $productRepository = new ProductRepository();\n+                $product = $productRepository->getProductById($idProduct);\n+        \n+                if ($product) {\n+                    // Renvoyer la réponse au format JSON\n+                    header('Content-Type: application/json');\n+                    echo json_encode($product);\n+                } else {\n+                    // Renvoyer une réponse d'erreur si le produit n'est pas trouvé\n+                    http_response_code(404);\n+                    echo json_encode(['error' => 'Product not found']);\n+                }\n             } else {\n-                // Renvoyer une réponse JSON avec un message d'erreur si le produit n'est pas trouvé\n-                http_response_code(404);\n-                echo json_encode(['error' => 'Produit non trouvé']);\n+                // Renvoyer une réponse d'erreur si l'id du produit n'est pas spécifié\n+                http_response_code(400);\n+                echo json_encode(['error' => 'Product id not specified']);\n             }\n         }\n-        var_dump($product);\n-       \n-    }\n \n \n \n    \n"
+                },
+                {
+                    "date": 1690810654295,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -34,10 +34,10 @@\n             } else {\n                 // Renvoyer une réponse d'erreur si l'id du produit n'est pas spécifié\n                 http_response_code(400);\n                 echo json_encode(['error' => 'Product id not specified']);\n-            }\n-        }\n+            \n+        \n \n \n \n    \n"
+                },
+                {
+                    "date": 1690810701022,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,8 +20,9 @@\n             if (isset($_GET['id'])) {\n                 $idProduct = $_GET['id'];\n                 $productRepository = new ProductRepository();\n                 $product = $productRepository->getProductById($idProduct);\n+                var\n         \n                 if ($product) {\n                     // Renvoyer la réponse au format JSON\n                     header('Content-Type: application/json');\n@@ -34,10 +35,11 @@\n             } else {\n                 // Renvoyer une réponse d'erreur si l'id du produit n'est pas spécifié\n                 http_response_code(400);\n                 echo json_encode(['error' => 'Product id not specified']);\n-            \n-        \n+            }\n+        }\n+    }\n \n \n \n    \n"
+                },
+                {
+                    "date": 1690810706641,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,9 +20,9 @@\n             if (isset($_GET['id'])) {\n                 $idProduct = $_GET['id'];\n                 $productRepository = new ProductRepository();\n                 $product = $productRepository->getProductById($idProduct);\n-                var\n+                var_dump(getProductById($idProduct);\n         \n                 if ($product) {\n                     // Renvoyer la réponse au format JSON\n                     header('Content-Type: application/json');\n"
+                },
+                {
+                    "date": 1690810735640,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,9 +20,9 @@\n             if (isset($_GET['id'])) {\n                 $idProduct = $_GET['id'];\n                 $productRepository = new ProductRepository();\n                 $product = $productRepository->getProductById($idProduct);\n-                var_dump(getProductById($idProduct);\n+                \n         \n                 if ($product) {\n                     // Renvoyer la réponse au format JSON\n                     header('Content-Type: application/json');\n"
+                },
+                {
+                    "date": 1690810741539,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,9 +20,9 @@\n             if (isset($_GET['id'])) {\n                 $idProduct = $_GET['id'];\n                 $productRepository = new ProductRepository();\n                 $product = $productRepository->getProductById($idProduct);\n-                \n+                var_dump($produit)\n         \n                 if ($product) {\n                     // Renvoyer la réponse au format JSON\n                     header('Content-Type: application/json');\n"
+                },
+                {
+                    "date": 1690810746984,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,9 +20,9 @@\n             if (isset($_GET['id'])) {\n                 $idProduct = $_GET['id'];\n                 $productRepository = new ProductRepository();\n                 $product = $productRepository->getProductById($idProduct);\n-                var_dump($produit)\n+                var_dump($product);\n         \n                 if ($product) {\n                     // Renvoyer la réponse au format JSON\n                     header('Content-Type: application/json');\n"
+                },
+                {
+                    "date": 1690810897097,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -139,27 +139,10 @@\n         }\n     }\n }\n \n-public function getProductById($id)\n-    {\n-        // Récupérer le produit en fonction de l'ID et renvoyer le résultat en JSON\n-        $productRepository = new ProductRepository();\n-        $product = $productRepository->getProductById($id);\n \n-        header('Content-Type: application/json');\n \n-        if ($product) {\n-            echo json_encode($product);\n-        } else {\n-            http_response_code(404);\n-            echo json_encode(['error' => 'Produit non trouvé']);\n-        }\n-    }\n \n-    // ...\n-}\n \n \n \n-\n-\n"
+                },
+                {
+                    "date": 1690810955981,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,36 +13,10 @@\n \n \n  \n \n-    public function getProduct()\n-    {\n-        if ($_SERVER['REQUEST_METHOD'] === 'GET') {\n-            if (isset($_GET['id'])) {\n-                $idProduct = $_GET['id'];\n-                $productRepository = new ProductRepository();\n-                $product = $productRepository->getProductById($idProduct);\n-                var_dump($product);\n-        \n-                if ($product) {\n-                    // Renvoyer la réponse au format JSON\n-                    header('Content-Type: application/json');\n-                    echo json_encode($product);\n-                } else {\n-                    // Renvoyer une réponse d'erreur si le produit n'est pas trouvé\n-                    http_response_code(404);\n-                    echo json_encode(['error' => 'Product not found']);\n-                }\n-            } else {\n-                // Renvoyer une réponse d'erreur si l'id du produit n'est pas spécifié\n-                http_response_code(400);\n-                echo json_encode(['error' => 'Product id not specified']);\n-            }\n-        }\n-    }\n+    \n \n-\n-\n    \n     public function DisplayProducts()\n     { \n \n@@ -139,10 +113,10 @@\n         }\n     }\n }\n \n+}\n \n \n \n \n \n-\n"
+                },
+                {
+                    "date": 1690810961088,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,9 +10,26 @@\n \n Class ProductController extends AbstractController\n {\n \n+    public function getProductById($id)\n+    {\n+        // Récupérer le produit en fonction de l'ID et renvoyer le résultat en JSON\n+        $productRepository = new ProductRepository();\n+        $product = $productRepository->getProductById($id);\n \n+        header('Content-Type: application/json');\n+\n+        if ($product) {\n+            echo json_encode($product);\n+        } else {\n+            http_response_code(404);\n+            echo json_encode(['error' => 'Produit non trouvé']);\n+        }\n+    }\n+\n+    // ...\n+\n  \n \n     \n \n"
+                },
+                {
+                    "date": 1690811019445,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,30 +10,39 @@\n \n Class ProductController extends AbstractController\n {\n \n-    public function getProductById($id)\n-    {\n-        // Récupérer le produit en fonction de l'ID et renvoyer le résultat en JSON\n-        $productRepository = new ProductRepository();\n-        $product = $productRepository->getProductById($id);\n \n-        header('Content-Type: application/json');\n+ \n \n-        if ($product) {\n-            echo json_encode($product);\n-        } else {\n-            http_response_code(404);\n-            echo json_encode(['error' => 'Produit non trouvé']);\n+    public function getProduct()\n+    {\n+        if ($_SERVER['REQUEST_METHOD'] === 'GET') {\n+            if (isset($_GET['id'])) {\n+                $idProduct = $_GET['id'];\n+                $productRepository = new ProductRepository();\n+                $product = $productRepository->getProductById($idProduct);\n+                var_dump($product);\n+        \n+                if ($product) {\n+                    // Renvoyer la réponse au format JSON\n+                    header('Content-Type: application/json');\n+                    echo json_encode($product);\n+                } else {\n+                    // Renvoyer une réponse d'erreur si le produit n'est pas trouvé\n+                    http_response_code(404);\n+                    echo json_encode(['error' => 'Product not found']);\n+                }\n+            } else {\n+                // Renvoyer une réponse d'erreur si l'id du produit n'est pas spécifié\n+                http_response_code(400);\n+                echo json_encode(['error' => 'Product id not specified']);\n+            }\n         }\n     }\n \n-    // ...\n \n- \n \n-    \n-\n    \n     public function DisplayProducts()\n     { \n \n"
+                },
+                {
+                    "date": 1690811064086,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,33 +13,9 @@\n \n \n  \n \n-    public function getProduct()\n-    {\n-        if ($_SERVER['REQUEST_METHOD'] === 'GET') {\n-            if (isset($_GET['id'])) {\n-                $idProduct = $_GET['id'];\n-                $productRepository = new ProductRepository();\n-                $product = $productRepository->getProductById($idProduct);\n-                var_dump($product);\n-        \n-                if ($product) {\n-                    // Renvoyer la réponse au format JSON\n-                    header('Content-Type: application/json');\n-                    echo json_encode($product);\n-                } else {\n-                    // Renvoyer une réponse d'erreur si le produit n'est pas trouvé\n-                    http_response_code(404);\n-                    echo json_encode(['error' => 'Product not found']);\n-                }\n-            } else {\n-                // Renvoyer une réponse d'erreur si l'id du produit n'est pas spécifié\n-                http_response_code(400);\n-                echo json_encode(['error' => 'Product id not specified']);\n-            }\n-        }\n-    }\n+   \n \n \n \n    \n"
+                },
+                {
+                    "date": 1690811089143,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,9 +10,21 @@\n \n Class ProductController extends AbstractController\n {\n \n+       // Récupérer le produit en fonction de l'ID et renvoyer le résultat en JSON\n+       $productRepository = new ProductRepository();\n+       $product = $productRepository->getProductById($id);\n \n+       header('Content-Type: application/json');\n+\n+       if ($product) {\n+           echo json_encode($product);\n+       } else {\n+           http_response_code(404);\n+           echo json_encode(['error' => 'Produit non trouvé']);\n+       }\n+   }\n  \n \n    \n \n"
+                },
+                {
+                    "date": 1690811099731,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -22,9 +22,9 @@\n        } else {\n            http_response_code(404);\n            echo json_encode(['error' => 'Produit non trouvé']);\n        }\n-   }\n+   \n  \n \n    \n \n"
+                },
+                {
+                    "date": 1690811105590,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -22,9 +22,10 @@\n        } else {\n            http_response_code(404);\n            echo json_encode(['error' => 'Produit non trouvé']);\n        }\n-   \n+    }\n+}\n  \n \n    \n \n"
+                },
+                {
+                    "date": 1690811116749,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,22 +10,9 @@\n \n Class ProductController extends AbstractController\n {\n \n-       // Récupérer le produit en fonction de l'ID et renvoyer le résultat en JSON\n-       $productRepository = new ProductRepository();\n-       $product = $productRepository->getProductById($id);\n \n-       header('Content-Type: application/json');\n-\n-       if ($product) {\n-           echo json_encode($product);\n-       } else {\n-           http_response_code(404);\n-           echo json_encode(['error' => 'Produit non trouvé']);\n-       }\n-    }\n-}\n  \n \n    \n \n"
+                },
+                {
+                    "date": 1690811124524,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,17 +9,37 @@\n \n \n Class ProductController extends AbstractController\n {\n+    public function getProduct()\n+    {\n+        if ($_SERVER['REQUEST_METHOD'] === 'GET') {\n+            if (isset($_GET['id'])) {\n+                $idProduct = $_GET['id'];\n+                $productRepository = new ProductRepository();\n+                $product = $productRepository->getProductById($idProduct);\n+                var_dump($product);\n+        \n+                if ($product) {\n+                    // Renvoyer la réponse au format JSON\n+                    header('Content-Type: application/json');\n+                    echo json_encode($product);\n+                } else {\n+                    // Renvoyer une réponse d'erreur si le produit n'est pas trouvé\n+                    http_response_code(404);\n+                    echo json_encode(['error' => 'Product not found']);\n+                }\n+            } else {\n+                // Renvoyer une réponse d'erreur si l'id du produit n'est pas spécifié\n+                http_response_code(400);\n+                echo json_encode(['error' => 'Product id not specified']);\n+            }\n+        }\n+    }\n \n \n- \n \n    \n-\n-\n-\n-   \n     public function DisplayProducts()\n     { \n \n        \n"
+                },
+                {
+                    "date": 1690811166870,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,9 +16,9 @@\n             if (isset($_GET['id'])) {\n                 $idProduct = $_GET['id'];\n                 $productRepository = new ProductRepository();\n                 $product = $productRepository->getProductById($idProduct);\n-                var_dump($product);\n+              \n         \n                 if ($product) {\n                     // Renvoyer la réponse au format JSON\n                     header('Content-Type: application/json');\n"
+                },
+                {
+                    "date": 1690811352190,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,9 +17,8 @@\n                 $idProduct = $_GET['id'];\n                 $productRepository = new ProductRepository();\n                 $product = $productRepository->getProductById($idProduct);\n               \n-        \n                 if ($product) {\n                     // Renvoyer la réponse au format JSON\n                     header('Content-Type: application/json');\n                     echo json_encode($product);\n"
+                },
+                {
+                    "date": 1690811359274,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,8 +16,9 @@\n             if (isset($_GET['id'])) {\n                 $idProduct = $_GET['id'];\n                 $productRepository = new ProductRepository();\n                 $product = $productRepository->getProductById($idProduct);\n+                var_\n               \n                 if ($product) {\n                     // Renvoyer la réponse au format JSON\n                     header('Content-Type: application/json');\n"
+                },
+                {
+                    "date": 1690811365077,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,9 +16,9 @@\n             if (isset($_GET['id'])) {\n                 $idProduct = $_GET['id'];\n                 $productRepository = new ProductRepository();\n                 $product = $productRepository->getProductById($idProduct);\n-                var_\n+                var_dump($product);\n               \n                 if ($product) {\n                     // Renvoyer la réponse au format JSON\n                     header('Content-Type: application/json');\n"
+                },
+                {
+                    "date": 1690811375887,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,9 +16,9 @@\n             if (isset($_GET['id'])) {\n                 $idProduct = $_GET['id'];\n                 $productRepository = new ProductRepository();\n                 $product = $productRepository->getProductById($idProduct);\n-                var_dump($product);\n+                die\n               \n                 if ($product) {\n                     // Renvoyer la réponse au format JSON\n                     header('Content-Type: application/json');\n"
+                },
+                {
+                    "date": 1690811382033,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,9 +16,9 @@\n             if (isset($_GET['id'])) {\n                 $idProduct = $_GET['id'];\n                 $productRepository = new ProductRepository();\n                 $product = $productRepository->getProductById($idProduct);\n-                die\n+                die('hello, product');\n               \n                 if ($product) {\n                     // Renvoyer la réponse au format JSON\n                     header('Content-Type: application/json');\n"
+                },
+                {
+                    "date": 1690811535940,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,9 +16,9 @@\n             if (isset($_GET['id'])) {\n                 $idProduct = $_GET['id'];\n                 $productRepository = new ProductRepository();\n                 $product = $productRepository->getProductById($idProduct);\n-                die('hello, product');\n+                \n               \n                 if ($product) {\n                     // Renvoyer la réponse au format JSON\n                     header('Content-Type: application/json');\n"
+                },
+                {
+                    "date": 1690811691742,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,9 +15,9 @@\n         if ($_SERVER['REQUEST_METHOD'] === 'GET') {\n             if (isset($_GET['id'])) {\n                 $idProduct = $_GET['id'];\n                 $productRepository = new ProductRepository();\n-                $product = $productRepository->getProductById($idProduct);\n+                $product = $productRepository->getProductById($idProduct)($idProduct);\n                 \n               \n                 if ($product) {\n                     // Renvoyer la réponse au format JSON\n"
+                },
+                {
+                    "date": 1690812223814,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,10 +15,10 @@\n         if ($_SERVER['REQUEST_METHOD'] === 'GET') {\n             if (isset($_GET['id'])) {\n                 $idProduct = $_GET['id'];\n                 $productRepository = new ProductRepository();\n-                $product = $productRepository->getProductById($idProduct)($idProduct);\n-                \n+                $product = $productRepository->getProductById($idProduct);\n+                var_dump()\n               \n                 if ($product) {\n                     // Renvoyer la réponse au format JSON\n                     header('Content-Type: application/json');\n"
+                },
+                {
+                    "date": 1690812229041,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,9 +16,9 @@\n             if (isset($_GET['id'])) {\n                 $idProduct = $_GET['id'];\n                 $productRepository = new ProductRepository();\n                 $product = $productRepository->getProductById($idProduct);\n-                var_dump()\n+                var_dump($product);\n               \n                 if ($product) {\n                     // Renvoyer la réponse au format JSON\n                     header('Content-Type: application/json');\n"
+                },
+                {
+                    "date": 1690812263923,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,9 +16,9 @@\n             if (isset($_GET['id'])) {\n                 $idProduct = $_GET['id'];\n                 $productRepository = new ProductRepository();\n                 $product = $productRepository->getProductById($idProduct);\n-                var_dump($product);\n+               \n               \n                 if ($product) {\n                     // Renvoyer la réponse au format JSON\n                     header('Content-Type: application/json');\n"
+                },
+                {
+                    "date": 1690812274443,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,9 +16,9 @@\n             if (isset($_GET['id'])) {\n                 $idProduct = $_GET['id'];\n                 $productRepository = new ProductRepository();\n                 $product = $productRepository->getProductById($idProduct);\n-               \n+                  \n               \n                 if ($product) {\n                     // Renvoyer la réponse au format JSON\n                     header('Content-Type: application/json');\n"
+                },
+                {
+                    "date": 1690812444736,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,18 +7,18 @@\n use CrudPOO\\Model\\ProductRepository;\n use CrudPOO\\Model\\LanguageRepository;\n \n \n-Class ProductController extends AbstractController\n+Class ProductController extends \n {\n     public function getProduct()\n     {\n         if ($_SERVER['REQUEST_METHOD'] === 'GET') {\n             if (isset($_GET['id'])) {\n                 $idProduct = $_GET['id'];\n                 $productRepository = new ProductRepository();\n                 $product = $productRepository->getProductById($idProduct);\n-                  \n+                   \n               \n                 if ($product) {\n                     // Renvoyer la réponse au format JSON\n                     header('Content-Type: application/json');\n"
+                },
+                {
+                    "date": 1690812462481,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,9 +7,9 @@\n use CrudPOO\\Model\\ProductRepository;\n use CrudPOO\\Model\\LanguageRepository;\n \n \n-Class ProductController extends \n+Class ProductController \n {\n     public function getProduct()\n     {\n         if ($_SERVER['REQUEST_METHOD'] === 'GET') {\n@@ -44,9 +44,9 @@\n \n        \n       $productRepository = new ProductRepository;\n       $products = $productRepository->getProducts();\n-      $this->render($products);\n+      require_once(dirname(__FILE__, 2) . '/View/AddProduct.php');\n       \n     }\n \n    public  function addProduct()\n"
+                },
+                {
+                    "date": 1690812470557,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -44,9 +44,9 @@\n \n        \n       $productRepository = new ProductRepository;\n       $products = $productRepository->getProducts();\n-      require_once(dirname(__FILE__, 2) . '/View/AddProduct.php');\n+      require_once(dirname(__FILE__, 2) . '/View/.php');\n       \n     }\n \n    public  function addProduct()\n"
+                },
+                {
+                    "date": 1690812475835,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -44,9 +44,9 @@\n \n        \n       $productRepository = new ProductRepository;\n       $products = $productRepository->getProducts();\n-      require_once(dirname(__FILE__, 2) . '/View/.php');\n+      require_once(dirname(__FILE__, 2) . '/View/CrudPage.php');\n       \n     }\n \n    public  function addProduct()\n"
+                },
+                {
+                    "date": 1690812893925,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,9 +12,9 @@\n {\n     public function getProduct()\n     {\n         if ($_SERVER['REQUEST_METHOD'] === 'GET') {\n-            if (isset($_GET['id'])) {\n+            if (isset($_GET['idProduct'])) {\n                 $idProduct = $_GET['id'];\n                 $productRepository = new ProductRepository();\n                 $product = $productRepository->getProductById($idProduct);\n                    \n"
+                },
+                {
+                    "date": 1690812899335,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,9 +13,9 @@\n     public function getProduct()\n     {\n         if ($_SERVER['REQUEST_METHOD'] === 'GET') {\n             if (isset($_GET['idProduct'])) {\n-                $idProduct = $_GET['id'];\n+                $idProduct = $_GET[''];\n                 $productRepository = new ProductRepository();\n                 $product = $productRepository->getProductById($idProduct);\n                    \n               \n"
+                },
+                {
+                    "date": 1690812928504,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,10 +12,10 @@\n {\n     public function getProduct()\n     {\n         if ($_SERVER['REQUEST_METHOD'] === 'GET') {\n-            if (isset($_GET['idProduct'])) {\n-                $idProduct = $_GET[''];\n+            if (isset($_GET['id'])) {\n+                $idProduct = $_GET['id'];\n                 $productRepository = new ProductRepository();\n                 $product = $productRepository->getProductById($idProduct);\n                    \n               \n"
+                },
+                {
+                    "date": 1690813017552,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,10 +16,10 @@\n             if (isset($_GET['id'])) {\n                 $idProduct = $_GET['id'];\n                 $productRepository = new ProductRepository();\n                 $product = $productRepository->getProductById($idProduct);\n-                   \n-              \n+                var_dump($product); // Ajout du var_dump pour le débogage\n+    \n                 if ($product) {\n                     // Renvoyer la réponse au format JSON\n                     header('Content-Type: application/json');\n                     echo json_encode($product);\n@@ -34,11 +34,11 @@\n                 echo json_encode(['error' => 'Product id not specified']);\n             }\n         }\n     }\n+    \n \n \n-\n    \n     public function DisplayProducts()\n     { \n \n"
+                },
+                {
+                    "date": 1690813035493,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,9 +16,9 @@\n             if (isset($_GET['id'])) {\n                 $idProduct = $_GET['id'];\n                 $productRepository = new ProductRepository();\n                 $product = $productRepository->getProductById($idProduct);\n-                var_dump($product); // Ajout du var_dump pour le débogage\n+                // Ajout du var_dump pour le débogage\n     \n                 if ($product) {\n                     // Renvoyer la réponse au format JSON\n                     header('Content-Type: application/json');\n"
+                },
+                {
+                    "date": 1690813126145,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,9 +14,9 @@\n     {\n         if ($_SERVER['REQUEST_METHOD'] === 'GET') {\n             if (isset($_GET['id'])) {\n                 $idProduct = $_GET['id'];\n-                v\n+                va\n                 $productRepository = new ProductRepository();\n                 $product = $productRepository->getProductById($idProduct);\n                 // Ajout du var_dump pour le débogage\n     \n"
+                },
+                {
+                    "date": 1690821461335,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,9 +14,9 @@\n     {\n         if ($_SERVER['REQUEST_METHOD'] === 'GET') {\n             if (isset($_GET['id'])) {\n                 $idProduct = $_GET['id'];\n-                $produi           \n+                $produit           \n                 $productRepository = new ProductRepository();\n                 $product = $productRepository->getProductById($idProduct);\n                 // Ajout du var_dump pour le débogage\n                 \n"
+                }
+            ],
+            "date": 1690808524780,
+            "name": "Commit-0",
+            "content": "<?php\n\nnamespace  CrudPOO\\Controllers;\n\nuse CrudPOO\\Entity\\Language;\nuse CrudPOO\\Entity\\Product;\nuse CrudPOO\\Model\\ProductRepository;\nuse CrudPOO\\Model\\LanguageRepository;\n\n\nClass ProductController extends AbstractController\n{\n\n\n   \n    public function DisplayProducts()\n    { \n\n       \n      $productRepository = new ProductRepository;\n      $products = $productRepository->getProducts();\n      $this->render($products);\n      \n    }\n\n   public  function addProduct()\n{\n   \n\n    if (\n        empty($_POST['reference']) ||\n        empty($_POST['description']) ||\n        empty($_POST['priceTaxIncl']) ||\n        empty($_POST['priceTaxExcl']) ||\n        empty($_POST['quantity'])\n    ) {\n        $error = 'Please fill in all the required fields.';\n    } else {\n      \n        $reference = $_POST['reference'];\n        $description = $_POST['description'];\n        $priceTaxIncl = $_POST['priceTaxIncl'];\n        $priceTaxExcl = $_POST['priceTaxExcl'];\n        $quantity = $_POST['quantity'];\n        $idLang = $_POST['cat'];\n      \n        $productRepository = new ProductRepository;\n        \n        $produit = $productRepository->createProduct($reference, $description, $priceTaxIncl, $priceTaxExcl, $idLang, $quantity);\n\n        if ($produit) {\n            header('location:index.php?action=AfficheCrud');\n            exit();\n        } else {\n          \n            $error = 'Failed to create product.';\n        }\n    }\n    \n    require_once(dirname(__FILE__, 2) . '/View/AddProduct.php');\n}\n\n\n\npublic function EditProduct()\n{\n    if (isset($_GET['id'])) {\n        $idProduct = $_GET['id'];\n        $productRepository = new ProductRepository;\n        $product = $productRepository->getProductById($idProduct);\n\n        if ($_SERVER[\"REQUEST_METHOD\"] === \"POST\") {\n            // Récupérez les données du formulaire d'édition\n            $reference = $_POST['reference'];\n            $description = $_POST['description'];\n            $priceTaxIncl = $_POST['priceTaxIncl'];\n            $priceTaxExcl = $_POST['priceTaxExcl'];\n            $quantity = $_POST['quantity'];\n            $idLang = $_POST['cat'];\n\n            // Mettez à jour le produit en base de données\n            $result = $productRepository->updateProduct($idProduct, $reference, $description, $priceTaxIncl, $priceTaxExcl, $idLang, $quantity);\n\n            if ($result) {\n                header('Location: index.php?action=AfficheCrud');\n                exit();\n            } else {\n                $error = 'Failed to update product.';\n            }\n        }\n\n        require_once(dirname(__FILE__, 2) . '/View/EditProduct.php');\n    }\n}\npublic function DeleteProduct()\n{\n    if (isset($_GET['id'])) {\n        $idProduct = $_GET['id'];\n        $productRepository = new ProductRepository;\n\n        // Supprimez le produit en base de données\n        $result = $productRepository->deleteProduct($idProduct);\n\n        if ($result) {\n            header('Location: index.php?action=AfficheCrud');\n            exit();\n        } else {\n            $error = 'Failed to delete product.';\n        }\n    }\n}\n\n\n\n\n}\n\n\n"
+        }
+    ]
+}

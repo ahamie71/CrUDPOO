@@ -1,0 +1,26 @@
+{
+    "sourceFile": "src/Entity/Product.php",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 2,
+            "patches": [
+                {
+                    "date": 1690822983909,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1690823322391,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,8 +2,9 @@\n \n namespace  CrudPOO\\Entity;\n \n \n+\n use CrudPOO\\Entity\\Language;\n \n Class Product\n \n"
+                },
+                {
+                    "date": 1690878512386,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,8 @@\n namespace  CrudPOO\\Entity;\n \n \n \n-use CrudPOO\\Entity\\Language;\n \n Class Product\n \n {\n"
+                }
+            ],
+            "date": 1690822983909,
+            "name": "Commit-0",
+            "content": "<?php\n\nnamespace  CrudPOO\\Entity;\n\n\nuse CrudPOO\\Entity\\Language;\n\nClass Product\n\n{\n    private $idProduct;\n    private $reference;\n    private $description;\n    private $priceTaxIncl;\n    private $priceTaxExcl;\n    private $quantity ;\n    private int $idLang;\n    private $LanguageName;\n    /**\n     * Get the value of idProduct\n     */\n    public function getIdProduct()\n    {\n        return $this->idProduct;\n    }\n\n    /**\n     * Set the value of idProduct\n     */\n    public function setIdProduct($idProduct): self\n    {\n        $this->idProduct = $idProduct;\n\n        return $this;\n    }\n\n    /**\n     * Get the value of reference\n     */\n    public function getReference()\n    {\n        return $this->reference;\n    }\n\n    /**\n     * Set the value of reference\n     */\n    public function setReference($reference): self\n    {\n        $this->reference = $reference;\n\n        return $this;\n    }\n\n    /**\n     * Get the value of description\n     */\n    public function getDescription()\n    {\n        return $this->description;\n    }\n\n    /**\n     * Set the value of description\n     */\n    public function setDescription($description): self\n    {\n        $this->description = $description;\n\n        return $this;\n    }\n\n    /**\n     * Get the value of priceTaxIncl\n     */\n    public function getPriceTaxIncl()\n    {\n        return $this->priceTaxIncl;\n    }\n\n    /**\n     * Set the value of priceTaxIncl\n     */\n    public function setPriceTaxIncl($priceTaxIncl): self\n    {\n        $this->priceTaxIncl = $priceTaxIncl;\n\n        return $this;\n    }\n\n    /**\n     * Get the value of priceTaxExcl\n     */\n    public function getPriceTaxExcl()\n    {\n        return $this->priceTaxExcl;\n    }\n\n    /**\n     * Set the value of priceTaxExcl\n     */\n    public function setPriceTaxExcl($priceTaxExcl): self\n    {\n        $this->priceTaxExcl = $priceTaxExcl;\n\n        return $this;\n    }\n\n    /**\n     * Get the value of quantity\n     */\n    public function getQuantity()\n    {\n        return $this->quantity;\n    }\n\n    /**\n     * Set the value of quantity\n     */\n    public function setQuantity($quantity): self\n    {\n        $this->quantity = $quantity;\n\n        return $this;\n    }\n\n    /**\n     * Get the value of idLang\n     */\n    public function getIdLang(): int\n    {\n        return $this->idLang;\n    }\n\n    /**\n     * Set the value of idLang\n     */\n    public function setIdLang(int $idLang): self\n    {\n        $this->idLang = $idLang;\n\n        return $this;\n    }\n\n/**\n  * Get the value of LanguageName\n  */\n  public function getLanguageName()\n  {\n   return $this->LanguageName;\n  }\n \n  /**\n   * Set the value of LanguageName\n   */\n  public function setLanguageName($LanguageName): self\n  {\n   $this->LanguageName = $LanguageName;\n \n   return $this;\n  }\n}"
+        }
+    ]
+}

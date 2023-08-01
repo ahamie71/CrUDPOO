@@ -1,0 +1,254 @@
+{
+    "sourceFile": "src/Model/ProductRepository.php",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 59,
+            "patches": [
+                {
+                    "date": 1690812342889,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1690812349502,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -34,9 +34,9 @@\n     $stmt->setFetchMode(PDO::FETCH_CLASS, 'CrudPOO\\Entity\\Product');\n     $stmt->execute([$idProduct]);\n     $product = $stmt->fetch();\n \n-    va\n+    var_dump($pro)\n     return $product;\n }\n \n \n"
+                },
+                {
+                    "date": 1690812653762,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -34,9 +34,9 @@\n     $stmt->setFetchMode(PDO::FETCH_CLASS, 'CrudPOO\\Entity\\Product');\n     $stmt->execute([$idProduct]);\n     $product = $stmt->fetch();\n \n-    var_dump($pro)\n+   \n     return $product;\n }\n \n \n"
+                },
+                {
+                    "date": 1690812840315,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -33,10 +33,8 @@\n     $stmt = $bdd->getPDO()->prepare($req);\n     $stmt->setFetchMode(PDO::FETCH_CLASS, 'CrudPOO\\Entity\\Product');\n     $stmt->execute([$idProduct]);\n     $product = $stmt->fetch();\n-\n-   \n     return $product;\n }\n \n \n"
+                },
+                {
+                    "date": 1690812846006,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -33,9 +33,9 @@\n     $stmt = $bdd->getPDO()->prepare($req);\n     $stmt->setFetchMode(PDO::FETCH_CLASS, 'CrudPOO\\Entity\\Product');\n     $stmt->execute([$idProduct]);\n     $product = $stmt->fetch();\n-    return $product;\n+   \n }\n \n \n     function createProduct($reference, $description, $priceTaxIncl, $priceTaxExcl, $idLang, $quantity)\n"
+                },
+                {
+                    "date": 1690812858860,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -33,9 +33,9 @@\n     $stmt = $bdd->getPDO()->prepare($req);\n     $stmt->setFetchMode(PDO::FETCH_CLASS, 'CrudPOO\\Entity\\Product');\n     $stmt->execute([$idProduct]);\n     $product = $stmt->fetch();\n-   \n+    return $product;\n }\n \n \n     function createProduct($reference, $description, $priceTaxIncl, $priceTaxExcl, $idLang, $quantity)\n"
+                },
+                {
+                    "date": 1690822074040,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -28,9 +28,9 @@\n     $bdd = new Database();\n     $req = \"SELECT products.idLang, products.idProduct, products.reference, products.description, products.priceTaxIncl, products.priceTaxExcl, products.quantity, languages.LanguageName \n             FROM products\n             LEFT JOIN languages ON products.idLang = languages.idLang\n-            WHERE products.idProduct = ?\";\n+            WHERE products.idProduct = 31\";\n     $stmt = $bdd->getPDO()->prepare($req);\n     $stmt->setFetchMode(PDO::FETCH_CLASS, 'CrudPOO\\Entity\\Product');\n     $stmt->execute([$idProduct]);\n     $product = $stmt->fetch();\n"
+                },
+                {
+                    "date": 1690822090315,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -28,9 +28,9 @@\n     $bdd = new Database();\n     $req = \"SELECT products.idLang, products.idProduct, products.reference, products.description, products.priceTaxIncl, products.priceTaxExcl, products.quantity, languages.LanguageName \n             FROM products\n             LEFT JOIN languages ON products.idLang = languages.idLang\n-            WHERE products.idProduct = 31\";\n+            WHERE products.idProduct = ?\";\n     $stmt = $bdd->getPDO()->prepare($req);\n     $stmt->setFetchMode(PDO::FETCH_CLASS, 'CrudPOO\\Entity\\Product');\n     $stmt->execute([$idProduct]);\n     $product = $stmt->fetch();\n"
+                },
+                {
+                    "date": 1690822167039,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -64,15 +64,15 @@\n         }\n     }\n \n \n-    //     public function RemovePost($id)\n-//     {\n-//         $bdd = new Database();\n-//         $sql = \"DELETE FROM Post WHERE id= $id\";\n-//         $delet = $bdd->getPDO()->prepare($sql);\n-//         $delet->execute();\n-//     }\n+        public function RemovePost($id)\n+    {\n+        $bdd = new Database();\n+        $sql = \"DELETE FROM Post WHERE id= $id\";\n+        $delet = $bdd->getPDO()->prepare($sql);\n+        $delet->execute();\n+    }\n \n   \n public function updateProduct($idProduct, $reference, $description, $priceTaxIncl, $priceTaxExcl, $idLang, $quantity)\n {\n"
+                },
+                {
+                    "date": 1690822174395,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -64,15 +64,15 @@\n         }\n     }\n \n \n-        public function RemovePost($id)\n-    {\n-        $bdd = new Database();\n-        $sql = \"DELETE FROM Post WHERE id= $id\";\n-        $delet = $bdd->getPDO()->prepare($sql);\n-        $delet->execute();\n-    }\n+    //     public function RemovePost($id)\n+    // {\n+    //     $bdd = new Database();\n+    //     $sql = \"DELETE FROM Post WHERE id= $id\";\n+    //     $delet = $bdd->getPDO()->prepare($sql);\n+    //     $delet->execute();\n+    // }\n \n   \n public function updateProduct($idProduct, $reference, $description, $priceTaxIncl, $priceTaxExcl, $idLang, $quantity)\n {\n"
+                },
+                {
+                    "date": 1690822782279,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -30,9 +30,9 @@\n             FROM products\n             LEFT JOIN languages ON products.idLang = languages.idLang\n             WHERE products.idProduct = ?\";\n     $stmt = $bdd->getPDO()->prepare($req);\n-    $stmt->setFetchMode(PDO::FETCH_CLASS, 'CrudPOO\\Entity\\Product');\n+    $stmt->setFetchMode(PDO::FETCH_CLASS, 'c rudPOO\\Entity\\Product');\n     $stmt->execute([$idProduct]);\n     $product = $stmt->fetch();\n     return $product;\n }\n"
+                },
+                {
+                    "date": 1690822793446,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -30,9 +30,9 @@\n             FROM products\n             LEFT JOIN languages ON products.idLang = languages.idLang\n             WHERE products.idProduct = ?\";\n     $stmt = $bdd->getPDO()->prepare($req);\n-    $stmt->setFetchMode(PDO::FETCH_CLASS, 'c rudPOO\\Entity\\Product');\n+    $stmt->setFetchMode(PDO::FETCH_CLASS, 'CrudPOO\\Entity\\Product');\n     $stmt->execute([$idProduct]);\n     $product = $stmt->fetch();\n     return $product;\n }\n"
+                },
+                {
+                    "date": 1690822813933,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -32,9 +32,9 @@\n             WHERE products.idProduct = ?\";\n     $stmt = $bdd->getPDO()->prepare($req);\n     $stmt->setFetchMode(PDO::FETCH_CLASS, 'CrudPOO\\Entity\\Product');\n     $stmt->execute([$idProduct]);\n-    $product = $stmt->fetch();\n+    $product = $stmt->fetchAll();\n     return $product;\n }\n \n \n"
+                },
+                {
+                    "date": 1690822829341,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -32,9 +32,9 @@\n             WHERE products.idProduct = ?\";\n     $stmt = $bdd->getPDO()->prepare($req);\n     $stmt->setFetchMode(PDO::FETCH_CLASS, 'CrudPOO\\Entity\\Product');\n     $stmt->execute([$idProduct]);\n-    $product = $stmt->fetchAll();\n+    $product = $stmt->fetch();\n     return $product;\n }\n \n \n"
+                },
+                {
+                    "date": 1690822887912,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -30,9 +30,9 @@\n             FROM products\n             LEFT JOIN languages ON products.idLang = languages.idLang\n             WHERE products.idProduct = ?\";\n     $stmt = $bdd->getPDO()->prepare($req);\n-    $stmt->setFetchMode(PDO::FETCH_CLASS, 'CrudPOO\\Entity\\Product');\n+   \n     $stmt->execute([$idProduct]);\n     $product = $stmt->fetch();\n     return $product;\n }\n"
+                },
+                {
+                    "date": 1690822927115,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -30,9 +30,9 @@\n             FROM products\n             LEFT JOIN languages ON products.idLang = languages.idLang\n             WHERE products.idProduct = ?\";\n     $stmt = $bdd->getPDO()->prepare($req);\n-   \n+    $stmt->setFetchMode(PDO::FETCH_CLASS, 'CrudPOO\\Entity\\Product');\n     $stmt->execute([$idProduct]);\n     $product = $stmt->fetch();\n     return $product;\n }\n"
+                },
+                {
+                    "date": 1690823127403,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -30,9 +30,9 @@\n             FROM products\n             LEFT JOIN languages ON products.idLang = languages.idLang\n             WHERE products.idProduct = ?\";\n     $stmt = $bdd->getPDO()->prepare($req);\n-    $stmt->setFetchMode(PDO::FETCH_CLASS, 'CrudPOO\\Entity\\Product');\n+    \n     $stmt->execute([$idProduct]);\n     $product = $stmt->fetch();\n     return $product;\n }\n"
+                },
+                {
+                    "date": 1690823175361,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -30,9 +30,9 @@\n             FROM products\n             LEFT JOIN languages ON products.idLang = languages.idLang\n             WHERE products.idProduct = ?\";\n     $stmt = $bdd->getPDO()->prepare($req);\n-    \n+    $stmt->setFetchMode(PDO::FETCH_CLASS, 'CrudPOO\\Entity\\Product');\n     $stmt->execute([$idProduct]);\n     $product = $stmt->fetch();\n     return $product;\n }\n"
+                },
+                {
+                    "date": 1690823233142,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -33,9 +33,14 @@\n     $stmt = $bdd->getPDO()->prepare($req);\n     $stmt->setFetchMode(PDO::FETCH_CLASS, 'CrudPOO\\Entity\\Product');\n     $stmt->execute([$idProduct]);\n     $product = $stmt->fetch();\n+    echo \"SQL Query: $req<br>\";\n+    echo \"ID Product: $idProduct<br>\";\n+    echo \"Product Data: <pre>\" . print_r($product, true) . \"</pre>\";\n+\n     return $product;\n+    return $product;\n }\n \n \n     function createProduct($reference, $description, $priceTaxIncl, $priceTaxExcl, $idLang, $quantity)\n"
+                },
+                {
+                    "date": 1690823262247,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -33,14 +33,11 @@\n     $stmt = $bdd->getPDO()->prepare($req);\n     $stmt->setFetchMode(PDO::FETCH_CLASS, 'CrudPOO\\Entity\\Product');\n     $stmt->execute([$idProduct]);\n     $product = $stmt->fetch();\n-    echo \"SQL Query: $req<br>\";\n-    echo \"ID Product: $idProduct<br>\";\n-    echo \"Product Data: <pre>\" . print_r($product, true) . \"</pre>\";\n-\n+   \n     return $product;\n-    return $product;\n+    \n }\n \n \n     function createProduct($reference, $description, $priceTaxIncl, $priceTaxExcl, $idLang, $quantity)\n"
+                },
+                {
+                    "date": 1690823271852,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -31,9 +31,9 @@\n             LEFT JOIN languages ON products.idLang = languages.idLang\n             WHERE products.idProduct = ?\";\n     $stmt = $bdd->getPDO()->prepare($req);\n     $stmt->setFetchMode(PDO::FETCH_CLASS, 'CrudPOO\\Entity\\Product');\n-    $stmt->execute([$idProduct]);\n+    $stmt->execute($idProduct]);\n     $product = $stmt->fetch();\n    \n     return $product;\n     \n"
+                },
+                {
+                    "date": 1690823284653,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -31,9 +31,9 @@\n             LEFT JOIN languages ON products.idLang = languages.idLang\n             WHERE products.idProduct = ?\";\n     $stmt = $bdd->getPDO()->prepare($req);\n     $stmt->setFetchMode(PDO::FETCH_CLASS, 'CrudPOO\\Entity\\Product');\n-    $stmt->execute($idProduct]);\n+    $stmt->execute([$idProduct]);\n     $product = $stmt->fetch();\n    \n     return $product;\n     \n"
+                },
+                {
+                    "date": 1690823294210,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -30,9 +30,9 @@\n             FROM products\n             LEFT JOIN languages ON products.idLang = languages.idLang\n             WHERE products.idProduct = ?\";\n     $stmt = $bdd->getPDO()->prepare($req);\n-    $stmt->setFetchMode(PDO::FETCH_CLASS, 'CrudPOO\\Entity\\Product');\n+    $stmt->setFetchMode(PDO::FETCH_O, 'CrudPOO\\Entity\\Product');\n     $stmt->execute([$idProduct]);\n     $product = $stmt->fetch();\n    \n     return $product;\n"
+                },
+                {
+                    "date": 1690823308257,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -30,9 +30,9 @@\n             FROM products\n             LEFT JOIN languages ON products.idLang = languages.idLang\n             WHERE products.idProduct = ?\";\n     $stmt = $bdd->getPDO()->prepare($req);\n-    $stmt->setFetchMode(PDO::FETCH_O, 'CrudPOO\\Entity\\Product');\n+    $stmt->setFetchMode(PDO::FETCH_CLASS, 'CrudPOO\\Entity\\Product');\n     $stmt->execute([$idProduct]);\n     $product = $stmt->fetch();\n    \n     return $product;\n"
+                },
+                {
+                    "date": 1690824451098,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -30,9 +30,9 @@\n             FROM products\n             LEFT JOIN languages ON products.idLang = languages.idLang\n             WHERE products.idProduct = ?\";\n     $stmt = $bdd->getPDO()->prepare($req);\n-    $stmt->setFetchMode(PDO::FETCH_CLASS, 'CrudPOO\\Entity\\Product');\n+   \n     $stmt->execute([$idProduct]);\n     $product = $stmt->fetch();\n    \n     return $product;\n"
+                },
+                {
+                    "date": 1690824465392,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -30,9 +30,9 @@\n             FROM products\n             LEFT JOIN languages ON products.idLang = languages.idLang\n             WHERE products.idProduct = ?\";\n     $stmt = $bdd->getPDO()->prepare($req);\n-   \n+    $stmt->setFetchMode(PDO::FETCH_CLASS,'CrudPOO\\Entity\\Product');\n     $stmt->execute([$idProduct]);\n     $product = $stmt->fetch();\n    \n     return $product;\n"
+                },
+                {
+                    "date": 1690824475530,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -33,9 +33,9 @@\n     $stmt = $bdd->getPDO()->prepare($req);\n     $stmt->setFetchMode(PDO::FETCH_CLASS,'CrudPOO\\Entity\\Product');\n     $stmt->execute([$idProduct]);\n     $product = $stmt->fetch();\n-   \n+   var_dump()\n     return $product;\n     \n }\n \n"
+                },
+                {
+                    "date": 1690876109430,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -33,9 +33,9 @@\n     $stmt = $bdd->getPDO()->prepare($req);\n     $stmt->setFetchMode(PDO::FETCH_CLASS,'CrudPOO\\Entity\\Product');\n     $stmt->execute([$idProduct]);\n     $product = $stmt->fetch();\n-   var_dump()\n+   \n     return $product;\n     \n }\n \n"
+                },
+                {
+                    "date": 1690876124640,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -33,9 +33,8 @@\n     $stmt = $bdd->getPDO()->prepare($req);\n     $stmt->setFetchMode(PDO::FETCH_CLASS,'CrudPOO\\Entity\\Product');\n     $stmt->execute([$idProduct]);\n     $product = $stmt->fetch();\n-   \n     return $product;\n     \n }\n \n"
+                },
+                {
+                    "date": 1690876184321,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,9 +12,9 @@\n         $bdd = new Database();\n         $req = \" SELECT products.idLang, products.idProduct , products.reference, products.description,products.priceTaxIncl,products.priceTaxExcl,products.quantity,languages.LanguageName FROM products\n         LEFT JOIN languages ON products.idLang = languages.idLang\";\n         $stmt = $bdd->getPDO()->prepare($req);\n-        $stmt->setFetchMode(PDO::FETCH_CLASS, 'CrudPOO\\Entity\\Product');\n+        \n         $stmt->execute();\n         $products = $stmt->fetchAll();\n         return $products;\n     }\n"
+                },
+                {
+                    "date": 1690876190252,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,9 +12,9 @@\n         $bdd = new Database();\n         $req = \" SELECT products.idLang, products.idProduct , products.reference, products.description,products.priceTaxIncl,products.priceTaxExcl,products.quantity,languages.LanguageName FROM products\n         LEFT JOIN languages ON products.idLang = languages.idLang\";\n         $stmt = $bdd->getPDO()->prepare($req);\n-        \n+        $stmt->setFetchMode(PDO::FETCH_CLASS, 'CrudPOO\\Entity\\Product');\n         $stmt->execute();\n         $products = $stmt->fetchAll();\n         return $products;\n     }\n"
+                },
+                {
+                    "date": 1690876321949,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -18,12 +18,8 @@\n         $products = $stmt->fetchAll();\n         return $products;\n     }\n \n-\n-\n-\n-\n     public function getProductById($idProduct)\n {\n     $bdd = new Database();\n     $req = \"SELECT products.idLang, products.idProduct, products.reference, products.description, products.priceTaxIncl, products.priceTaxExcl, products.quantity, languages.LanguageName \n"
+                },
+                {
+                    "date": 1690876332135,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -27,9 +27,9 @@\n             LEFT JOIN languages ON products.idLang = languages.idLang\n             WHERE products.idProduct = ?\";\n     $stmt = $bdd->getPDO()->prepare($req);\n     $stmt->setFetchMode(PDO::FETCH_CLASS,'CrudPOO\\Entity\\Product');\n-    $stmt->execute([$idProduct]);\n+    $stmt->execute();\n     $product = $stmt->fetch();\n     return $product;\n     \n }\n"
+                },
+                {
+                    "date": 1690876339484,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -27,9 +27,9 @@\n             LEFT JOIN languages ON products.idLang = languages.idLang\n             WHERE products.idProduct = ?\";\n     $stmt = $bdd->getPDO()->prepare($req);\n     $stmt->setFetchMode(PDO::FETCH_CLASS,'CrudPOO\\Entity\\Product');\n-    $stmt->execute();\n+    $stmt->execute([$idProduct]);\n     $product = $stmt->fetch();\n     return $product;\n     \n }\n"
+                },
+                {
+                    "date": 1690876598952,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -26,9 +26,9 @@\n             FROM products\n             LEFT JOIN languages ON products.idLang = languages.idLang\n             WHERE products.idProduct = ?\";\n     $stmt = $bdd->getPDO()->prepare($req);\n-    $stmt->setFetchMode(PDO::FETCH_CLASS,'CrudPOO\\Entity\\Product');\n+    // $stmt->setFetchMode(PDO::FETCH_CLASS,'CrudPOO\\Entity\\Product');\n     $stmt->execute([$idProduct]);\n     $product = $stmt->fetch();\n     return $product;\n     \n"
+                },
+                {
+                    "date": 1690876653334,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -26,8 +26,9 @@\n             FROM products\n             LEFT JOIN languages ON products.idLang = languages.idLang\n             WHERE products.idProduct = ?\";\n     $stmt = $bdd->getPDO()->prepare($req);\n+    echo\n     // $stmt->setFetchMode(PDO::FETCH_CLASS,'CrudPOO\\Entity\\Product');\n     $stmt->execute([$idProduct]);\n     $product = $stmt->fetch();\n     return $product;\n"
+                },
+                {
+                    "date": 1690876665269,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -26,9 +26,9 @@\n             FROM products\n             LEFT JOIN languages ON products.idLang = languages.idLang\n             WHERE products.idProduct = ?\";\n     $stmt = $bdd->getPDO()->prepare($req);\n-    echo\n+    echo $smt\n     // $stmt->setFetchMode(PDO::FETCH_CLASS,'CrudPOO\\Entity\\Product');\n     $stmt->execute([$idProduct]);\n     $product = $stmt->fetch();\n     return $product;\n"
+                },
+                {
+                    "date": 1690876672154,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -26,9 +26,9 @@\n             FROM products\n             LEFT JOIN languages ON products.idLang = languages.idLang\n             WHERE products.idProduct = ?\";\n     $stmt = $bdd->getPDO()->prepare($req);\n-    echo $smt\n+    echo $stmt\n     // $stmt->setFetchMode(PDO::FETCH_CLASS,'CrudPOO\\Entity\\Product');\n     $stmt->execute([$idProduct]);\n     $product = $stmt->fetch();\n     return $product;\n"
+                },
+                {
+                    "date": 1690876677837,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -26,9 +26,9 @@\n             FROM products\n             LEFT JOIN languages ON products.idLang = languages.idLang\n             WHERE products.idProduct = ?\";\n     $stmt = $bdd->getPDO()->prepare($req);\n-    echo $stmt\n+    echo $stm->\n     // $stmt->setFetchMode(PDO::FETCH_CLASS,'CrudPOO\\Entity\\Product');\n     $stmt->execute([$idProduct]);\n     $product = $stmt->fetch();\n     return $product;\n"
+                },
+                {
+                    "date": 1690876683144,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -26,9 +26,9 @@\n             FROM products\n             LEFT JOIN languages ON products.idLang = languages.idLang\n             WHERE products.idProduct = ?\";\n     $stmt = $bdd->getPDO()->prepare($req);\n-    echo $stm->\n+    echo $stmt->\n     // $stmt->setFetchMode(PDO::FETCH_CLASS,'CrudPOO\\Entity\\Product');\n     $stmt->execute([$idProduct]);\n     $product = $stmt->fetch();\n     return $product;\n"
+                },
+                {
+                    "date": 1690877078218,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -27,9 +27,9 @@\n             LEFT JOIN languages ON products.idLang = languages.idLang\n             WHERE products.idProduct = ?\";\n     $stmt = $bdd->getPDO()->prepare($req);\n     echo $stmt->\n-    // $stmt->setFetchMode(PDO::FETCH_CLASS,'CrudPOO\\Entity\\Product');\n+     $stmt->setFetchMode(PDO::FETCH_CLASS,'CrudPOO\\Entity\\Product');\n     $stmt->execute([$idProduct]);\n     $product = $stmt->fetch();\n     return $product;\n     \n"
+                },
+                {
+                    "date": 1690877083908,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -26,9 +26,9 @@\n             FROM products\n             LEFT JOIN languages ON products.idLang = languages.idLang\n             WHERE products.idProduct = ?\";\n     $stmt = $bdd->getPDO()->prepare($req);\n-    echo $stmt->\n+    \n      $stmt->setFetchMode(PDO::FETCH_CLASS,'CrudPOO\\Entity\\Product');\n     $stmt->execute([$idProduct]);\n     $product = $stmt->fetch();\n     return $product;\n"
+                },
+                {
+                    "date": 1690877118977,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -19,22 +19,33 @@\n         return $products;\n     }\n \n     public function getProductById($idProduct)\n-{\n-    $bdd = new Database();\n-    $req = \"SELECT products.idLang, products.idProduct, products.reference, products.description, products.priceTaxIncl, products.priceTaxExcl, products.quantity, languages.LanguageName \n-            FROM products\n-            LEFT JOIN languages ON products.idLang = languages.idLang\n-            WHERE products.idProduct = ?\";\n-    $stmt = $bdd->getPDO()->prepare($req);\n+    {\n+        $bdd = new Database();\n+        $req = \"SELECT products.idLang, products.idProduct, products.reference, products.description, products.priceTaxIncl, products.priceTaxExcl, products.quantity, languages.LanguageName \n+                FROM products\n+                LEFT JOIN languages ON products.idLang = languages.idLang\n+                WHERE products.idProduct = ?\";\n+        $stmt = $bdd->getPDO()->prepare($req);\n+        $stmt->execute([$idProduct]);\n+        \n+        $productData = $stmt->fetch(PDO::FETCH_ASSOC);\n     \n-     $stmt->setFetchMode(PDO::FETCH_CLASS,'CrudPOO\\Entity\\Product');\n-    $stmt->execute([$idProduct]);\n-    $product = $stmt->fetch();\n-    return $product;\n+        if ($productData === false) {\n+            return null; // Product not found, return null or handle the absence in an appropriate way\n+        }\n     \n-}\n+        $product = new CrudPOO\\Entity\\Product();\n+        foreach ($productData as $key => $value) {\n+            if (property_exists($product, $key)) {\n+                $product->$key = $value;\n+            }\n+        }\n+    \n+        return $product;\n+    }\n+    \n \n \n     function createProduct($reference, $description, $priceTaxIncl, $priceTaxExcl, $idLang, $quantity)\n     {\n"
+                },
+                {
+                    "date": 1690877141238,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -34,9 +34,9 @@\n         if ($productData === false) {\n             return null; // Product not found, return null or handle the absence in an appropriate way\n         }\n     \n-        $product = new CrudPOO\\Entity\\Product();\n+        $product = new 'CrudPOO\\Entity\\Product();\n         foreach ($productData as $key => $value) {\n             if (property_exists($product, $key)) {\n                 $product->$key = $value;\n             }\n"
+                },
+                {
+                    "date": 1690877147789,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -34,9 +34,9 @@\n         if ($productData === false) {\n             return null; // Product not found, return null or handle the absence in an appropriate way\n         }\n     \n-        $product = new 'CrudPOO\\Entity\\Product();\n+        $product = new CrudPOO\\Entity\\Product();\n         foreach ($productData as $key => $value) {\n             if (property_exists($product, $key)) {\n                 $product->$key = $value;\n             }\n"
+                },
+                {
+                    "date": 1690877293020,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -19,33 +19,24 @@\n         return $products;\n     }\n \n     public function getProductById($idProduct)\n-    {\n-        $bdd = new Database();\n-        $req = \"SELECT products.idLang, products.idProduct, products.reference, products.description, products.priceTaxIncl, products.priceTaxExcl, products.quantity, languages.LanguageName \n-                FROM products\n-                LEFT JOIN languages ON products.idLang = languages.idLang\n-                WHERE products.idProduct = ?\";\n-        $stmt = $bdd->getPDO()->prepare($req);\n-        $stmt->execute([$idProduct]);\n-        \n-        $productData = $stmt->fetch(PDO::FETCH_ASSOC);\n+{\n+    $bdd = new Database();\n+    $req = \"SELECT products.idLang, products.idProduct, products.reference, products.description, products.priceTaxIncl, products.priceTaxExcl, products.quantity, languages.LanguageName \n+            FROM products\n+            LEFT JOIN languages ON products.idLang = languages.idLang\n+            WHERE products.idProduct = ?\";\n+    $stmt = $bdd->getPDO()->prepare($req);\n+    $stmt->setFetchMode(PDO::FETCH_CLASS, 'CrudPOO\\Model\\CrudPOO\\Entity\\Product');\n+    $stmt->execute([$idProduct]);\n+\n+    $product = $stmt->fetch();\n+\n+    return $product;\n+}\n+\n     \n-        if ($productData === false) {\n-            return null; // Product not found, return null or handle the absence in an appropriate way\n-        }\n-    \n-        $product = new CrudPOO\\Entity\\Product();\n-        foreach ($productData as $key => $value) {\n-            if (property_exists($product, $key)) {\n-                $product->$key = $value;\n-            }\n-        }\n-    \n-        return $product;\n-    }\n-    \n \n \n     function createProduct($reference, $description, $priceTaxIncl, $priceTaxExcl, $idLang, $quantity)\n     {\n"
+                },
+                {
+                    "date": 1690877314834,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -26,9 +26,9 @@\n             FROM products\n             LEFT JOIN languages ON products.idLang = languages.idLang\n             WHERE products.idProduct = ?\";\n     $stmt = $bdd->getPDO()->prepare($req);\n-    $stmt->setFetchMode(PDO::FETCH_CLASS, 'CrudPOO\\Model\\CrudPOO\\Entity\\Product');\n+    $stmt->setFetchMode(PDO::FETCH_CLASS, 'CrudPOO\\Model\\Entity\\Product');\n     $stmt->execute([$idProduct]);\n \n     $product = $stmt->fetch();\n \n"
+                },
+                {
+                    "date": 1690877331692,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -26,9 +26,9 @@\n             FROM products\n             LEFT JOIN languages ON products.idLang = languages.idLang\n             WHERE products.idProduct = ?\";\n     $stmt = $bdd->getPDO()->prepare($req);\n-    $stmt->setFetchMode(PDO::FETCH_CLASS, 'CrudPOO\\Model\\Entity\\Product');\n+    $stmt->setFetchMode(PDO::FETCH_CLASS, 'CrudPOO\\Entity\\Product');\n     $stmt->execute([$idProduct]);\n \n     $product = $stmt->fetch();\n \n"
+                },
+                {
+                    "date": 1690877345473,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -30,9 +30,8 @@\n     $stmt->setFetchMode(PDO::FETCH_CLASS, 'CrudPOO\\Entity\\Product');\n     $stmt->execute([$idProduct]);\n \n     $product = $stmt->fetch();\n-\n     return $product;\n }\n \n     \n"
+                },
+                {
+                    "date": 1690877685006,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -19,23 +19,31 @@\n         return $products;\n     }\n \n     public function getProductById($idProduct)\n-{\n-    $bdd = new Database();\n-    $req = \"SELECT products.idLang, products.idProduct, products.reference, products.description, products.priceTaxIncl, products.priceTaxExcl, products.quantity, languages.LanguageName \n-            FROM products\n-            LEFT JOIN languages ON products.idLang = languages.idLang\n-            WHERE products.idProduct = ?\";\n-    $stmt = $bdd->getPDO()->prepare($req);\n-    $stmt->setFetchMode(PDO::FETCH_CLASS, 'CrudPOO\\Entity\\Product');\n-    $stmt->execute([$idProduct]);\n-\n-    $product = $stmt->fetch();\n-    return $product;\n-}\n-\n+    {\n+        try {\n+            $bdd = new Database();\n+            $req = \"SELECT products.idLang, products.idProduct, products.reference, products.description, products.priceTaxIncl, products.priceTaxExcl, products.quantity, languages.LanguageName \n+                    FROM products\n+                    LEFT JOIN languages ON products.idLang = languages.idLang\n+                    WHERE products.idProduct = ?\";\n+            $stmt = $bdd->getPDO()->prepare($req);\n+            $stmt->setFetchMode(PDO::FETCH_CLASS, 'CrudPOO\\Model\\CrudPOO\\Entity\\Product');\n+            $stmt->execute([$idProduct]);\n     \n+            $product = $stmt->fetch();\n+    \n+            return $product;\n+        } catch (PDOException $e) {\n+            // Handle any PDO exceptions here\n+            // For example, you can log the error or show a user-friendly message\n+            echo \"Error: \" . $e->getMessage();\n+            return null; // Return null or handle the error in an appropriate way\n+        }\n+    }\n+    \n+    \n \n \n     function createProduct($reference, $description, $priceTaxIncl, $priceTaxExcl, $idLang, $quantity)\n     {\n"
+                },
+                {
+                    "date": 1690877745088,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -19,31 +19,22 @@\n         return $products;\n     }\n \n     public function getProductById($idProduct)\n-    {\n-        try {\n-            $bdd = new Database();\n-            $req = \"SELECT products.idLang, products.idProduct, products.reference, products.description, products.priceTaxIncl, products.priceTaxExcl, products.quantity, languages.LanguageName \n-                    FROM products\n-                    LEFT JOIN languages ON products.idLang = languages.idLang\n-                    WHERE products.idProduct = ?\";\n-            $stmt = $bdd->getPDO()->prepare($req);\n-            $stmt->setFetchMode(PDO::FETCH_CLASS, 'CrudPOO\\Model\\CrudPOO\\Entity\\Product');\n-            $stmt->execute([$idProduct]);\n+{\n+    $bdd = new Database();\n+    $req = \"SELECT products.idLang, products.idProduct, products.reference, products.description, products.priceTaxIncl, products.priceTaxExcl, products.quantity, languages.LanguageName \n+            FROM products\n+            LEFT JOIN languages ON products.idLang = languages.idLang\n+            WHERE products.idProduct = ?\";\n+    $stmt = $bdd->getPDO()->prepare($req);\n+    $stmt->setFetchMode(PDO::FETCH_CLASS, 'CrudPOO\\Entity\\Product');\n+    $stmt->execute([$idProduct]);\n+    $product = $stmt->fetch();\n+    return $product;\n+}\n+\n     \n-            $product = $stmt->fetch();\n-    \n-            return $product;\n-        } catch (PDOException $e) {\n-            // Handle any PDO exceptions here\n-            // For example, you can log the error or show a user-friendly message\n-            echo \"Error: \" . $e->getMessage();\n-            return null; // Return null or handle the error in an appropriate way\n-        }\n-    }\n-    \n-    \n \n \n     function createProduct($reference, $description, $priceTaxIncl, $priceTaxExcl, $idLang, $quantity)\n     {\n"
+                },
+                {
+                    "date": 1690877760608,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -26,9 +26,9 @@\n             FROM products\n             LEFT JOIN languages ON products.idLang = languages.idLang\n             WHERE products.idProduct = ?\";\n     $stmt = $bdd->getPDO()->prepare($req);\n-    $stmt->setFetchMode(PDO::FETCH_CLASS, 'CrudPOO\\Entity\\Product');\n+    $stmt->setFetchMode(PDO::FETCH_CLASS, 'CrudPOO\\ModelEntity\\Product');\n     $stmt->execute([$idProduct]);\n     $product = $stmt->fetch();\n     return $product;\n }\n"
+                },
+                {
+                    "date": 1690877769341,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -26,9 +26,9 @@\n             FROM products\n             LEFT JOIN languages ON products.idLang = languages.idLang\n             WHERE products.idProduct = ?\";\n     $stmt = $bdd->getPDO()->prepare($req);\n-    $stmt->setFetchMode(PDO::FETCH_CLASS, 'CrudPOO\\ModelEntity\\Product');\n+    $stmt->setFetchMode(PDO::FETCH_CLASS, 'CrudPOO\\Entity\\Product');\n     $stmt->execute([$idProduct]);\n     $product = $stmt->fetch();\n     return $product;\n }\n"
+                },
+                {
+                    "date": 1690878107667,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -25,9 +25,9 @@\n     $req = \"SELECT products.idLang, products.idProduct, products.reference, products.description, products.priceTaxIncl, products.priceTaxExcl, products.quantity, languages.LanguageName \n             FROM products\n             LEFT JOIN languages ON products.idLang = languages.idLang\n             WHERE products.idProduct = ?\";\n-    $stmt = $bdd->getPDO()->prepare($req);\n+    $stmt = $bdd->prepare($req);\n     $stmt->setFetchMode(PDO::FETCH_CLASS, 'CrudPOO\\Entity\\Product');\n     $stmt->execute([$idProduct]);\n     $product = $stmt->fetch();\n     return $product;\n"
+                },
+                {
+                    "date": 1690878118083,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -25,9 +25,9 @@\n     $req = \"SELECT products.idLang, products.idProduct, products.reference, products.description, products.priceTaxIncl, products.priceTaxExcl, products.quantity, languages.LanguageName \n             FROM products\n             LEFT JOIN languages ON products.idLang = languages.idLang\n             WHERE products.idProduct = ?\";\n-    $stmt = $bdd->prepare($req);\n+    $stmt = $bdd->($req);\n     $stmt->setFetchMode(PDO::FETCH_CLASS, 'CrudPOO\\Entity\\Product');\n     $stmt->execute([$idProduct]);\n     $product = $stmt->fetch();\n     return $product;\n"
+                },
+                {
+                    "date": 1690878127374,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -25,9 +25,9 @@\n     $req = \"SELECT products.idLang, products.idProduct, products.reference, products.description, products.priceTaxIncl, products.priceTaxExcl, products.quantity, languages.LanguageName \n             FROM products\n             LEFT JOIN languages ON products.idLang = languages.idLang\n             WHERE products.idProduct = ?\";\n-    $stmt = $bdd->($req);\n+    $stmt = $bdd->getPDOprepare($req);\n     $stmt->setFetchMode(PDO::FETCH_CLASS, 'CrudPOO\\Entity\\Product');\n     $stmt->execute([$idProduct]);\n     $product = $stmt->fetch();\n     return $product;\n"
+                },
+                {
+                    "date": 1690878464471,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -19,22 +19,24 @@\n         return $products;\n     }\n \n     public function getProductById($idProduct)\n-{\n-    $bdd = new Database();\n-    $req = \"SELECT products.idLang, products.idProduct, products.reference, products.description, products.priceTaxIncl, products.priceTaxExcl, products.quantity, languages.LanguageName \n-            FROM products\n-            LEFT JOIN languages ON products.idLang = languages.idLang\n-            WHERE products.idProduct = ?\";\n-    $stmt = $bdd->getPDOprepare($req);\n-    $stmt->setFetchMode(PDO::FETCH_CLASS, 'CrudPOO\\Entity\\Product');\n-    $stmt->execute([$idProduct]);\n-    $product = $stmt->fetch();\n-    return $product;\n-}\n-\n+    {\n+        $bdd = new Database();\n+        $req = \"SELECT products.idLang, products.idProduct, products.reference, products.description, products.priceTaxIncl, products.priceTaxExcl, products.quantity, languages.LanguageName \n+                FROM products\n+                LEFT JOIN languages ON products.idLang = languages.idLang\n+                WHERE products.idProduct = ?\";\n+        $stmt = $bdd->getPDO()->prepare($req);\n+        $stmt->setFetchMode(PDO::FETCH_CLASS, 'Product'); // Assurez-vous que 'Product' est le nom de la classe Product\n+        $stmt->execute([$idProduct]);\n     \n+        $product = $stmt->fetch();\n+    \n+        return $product;\n+    }\n+    \n+    \n \n \n     function createProduct($reference, $description, $priceTaxIncl, $priceTaxExcl, $idLang, $quantity)\n     {\n"
+                },
+                {
+                    "date": 1690878478300,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -19,24 +19,22 @@\n         return $products;\n     }\n \n     public function getProductById($idProduct)\n-    {\n-        $bdd = new Database();\n-        $req = \"SELECT products.idLang, products.idProduct, products.reference, products.description, products.priceTaxIncl, products.priceTaxExcl, products.quantity, languages.LanguageName \n-                FROM products\n-                LEFT JOIN languages ON products.idLang = languages.idLang\n-                WHERE products.idProduct = ?\";\n-        $stmt = $bdd->getPDO()->prepare($req);\n-        $stmt->setFetchMode(PDO::FETCH_CLASS, 'Product'); // Assurez-vous que 'Product' est le nom de la classe Product\n-        $stmt->execute([$idProduct]);\n+{\n+    $bdd = new Database();\n+    $req = \"SELECT products.idLang, products.idProduct, products.reference, products.description, products.priceTaxIncl, products.priceTaxExcl, products.quantity, languages.LanguageName \n+            FROM products\n+            LEFT JOIN languages ON products.idLang = languages.idLang\n+            WHERE products.idProduct = ?\";\n+    $stmt = $bdd->getPDO()->prepare($req);\n+    $stmt->setFetchMode(PDO::FETCH_CLASS, 'CrudPOO\\Entity\\Product');\n+    $stmt->execute([$idProduct]);\n+    $product = $stmt->fetch();\n+    return $product;\n+}\n+\n     \n-        $product = $stmt->fetch();\n-    \n-        return $product;\n-    }\n-    \n-    \n \n \n     function createProduct($reference, $description, $priceTaxIncl, $priceTaxExcl, $idLang, $quantity)\n     {\n"
+                },
+                {
+                    "date": 1690878596682,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -29,8 +29,9 @@\n     $stmt = $bdd->getPDO()->prepare($req);\n     $stmt->setFetchMode(PDO::FETCH_CLASS, 'CrudPOO\\Entity\\Product');\n     $stmt->execute([$idProduct]);\n     $product = $stmt->fetch();\n+    \n     return $product;\n }\n \n     \n"
+                },
+                {
+                    "date": 1690878632371,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -31,9 +31,9 @@\n     $stmt->execute([$idProduct]);\n     $product = $stmt->fetch();\n     header('Content-Type: application/json');\n     echo json_encode($product);\n-    re\n+    ret\n }\n \n     \n \n"
+                }
+            ],
+            "date": 1690812342889,
+            "name": "Commit-0",
+            "content": "<?php\nnamespace CrudPOO\\Model;\n\n\nuse PDO;\nuse CrudPOO\\Entity\\Database;\n\nclass ProductRepository\n{\n    public function getProducts()\n    {\n        $bdd = new Database();\n        $req = \" SELECT products.idLang, products.idProduct , products.reference, products.description,products.priceTaxIncl,products.priceTaxExcl,products.quantity,languages.LanguageName FROM products\n        LEFT JOIN languages ON products.idLang = languages.idLang\";\n        $stmt = $bdd->getPDO()->prepare($req);\n        $stmt->setFetchMode(PDO::FETCH_CLASS, 'CrudPOO\\Entity\\Product');\n        $stmt->execute();\n        $products = $stmt->fetchAll();\n        return $products;\n    }\n\n\n\n\n\n    public function getProductById($idProduct)\n{\n    $bdd = new Database();\n    $req = \"SELECT products.idLang, products.idProduct, products.reference, products.description, products.priceTaxIncl, products.priceTaxExcl, products.quantity, languages.LanguageName \n            FROM products\n            LEFT JOIN languages ON products.idLang = languages.idLang\n            WHERE products.idProduct = ?\";\n    $stmt = $bdd->getPDO()->prepare($req);\n    $stmt->setFetchMode(PDO::FETCH_CLASS, 'CrudPOO\\Entity\\Product');\n    $stmt->execute([$idProduct]);\n    $product = $stmt->fetch();\n\n    va\n    return $product;\n}\n\n\n    function createProduct($reference, $description, $priceTaxIncl, $priceTaxExcl, $idLang, $quantity)\n    {\n\n        $bdd = $bdd = new Database();\n\n\n        $query = $bdd->getPDO()->prepare(\"INSERT INTO products (reference, description, priceTaxIncl, priceTaxExcl, idLang, quantity) VALUES (?, ?, ?, ?, ?, ?)\");\n\n\n        $query->execute([\n            $reference,\n            $description,\n            $priceTaxIncl,\n            $priceTaxExcl,\n            $idLang,\n            $quantity\n        ]);\n\n\n        if ($query->rowCount() > 0) {\n            return true;\n        } else {\n            return false;\n        }\n    }\n\n\n    //     public function RemovePost($id)\n//     {\n//         $bdd = new Database();\n//         $sql = \"DELETE FROM Post WHERE id= $id\";\n//         $delet = $bdd->getPDO()->prepare($sql);\n//         $delet->execute();\n//     }\n\n  \npublic function updateProduct($idProduct, $reference, $description, $priceTaxIncl, $priceTaxExcl, $idLang, $quantity)\n{\n    $bdd = new Database();\n    $query = $bdd->getPDO()->prepare(\"UPDATE products \n                          SET reference = ?, \n                              description = ?, \n                              priceTaxIncl = ?, \n                              priceTaxExcl = ?, \n                              idLang = ?, \n                              quantity = ? \n                          WHERE idProduct = ?\");\n    $result = $query->execute([\n        $reference,\n        $description,\n        $priceTaxIncl,\n        $priceTaxExcl,\n        $idLang,\n        $quantity,\n        $idProduct // Ajoutez l'ID du produit pour la clause WHERE de la mise à jour\n    ]);\n\n    // Retourne true si la mise à jour a réussi, sinon retourne false\n    return $result;\n}\npublic function deleteProduct($idProduct)\n{\n    $bdd = new Database();\n    $query = $bdd->getPDO()->prepare(\"DELETE FROM products WHERE idProduct = ?\");\n    $result = $query->execute([$idProduct]);\n    return $result;\n}\n\n}\n"
+        }
+    ]
+}

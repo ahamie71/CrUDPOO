@@ -1,0 +1,78 @@
+{
+    "sourceFile": "public/index.php",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 15,
+            "patches": [
+                {
+                    "date": 1690808663619,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1690809719136,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -32,19 +32,19 @@\n     case'DeleteProduct';\n          $controller = new ProductController();\n          $controller->DeleteProduct();\n          break; \n-         case 'getProduct':\n+     case 'getProduct':\n             $controller = new ProductController();\n             $controller->getProduct();\n             break; // Nouveau cas pour l'API REST\n         default:\n             // Gérer le cas où l'action spécifiée n'est pas reconnue\n             break; \n          \n     }\n+ \n \n-\n } else {\n     $home = new HomeController();\n     $home->Home();\n }\n"
+                },
+                {
+                    "date": 1690811203750,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -32,17 +32,14 @@\n     case'DeleteProduct';\n          $controller = new ProductController();\n          $controller->DeleteProduct();\n          break; \n-     case 'getProduct':\n-            $controller = new ProductController();\n-            $controller->getProduct();\n-            break; // Nouveau cas pour l'API REST\n+     \n         default:\n             // Gérer le cas où l'action spécifiée n'est pas reconnue\n             break; \n          \n-    }\n+    } \n  \n \n } else {\n     $home = new HomeController();\n"
+                },
+                {
+                    "date": 1690811214813,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -34,8 +34,12 @@\n          $controller->DeleteProduct();\n          break; \n      \n         default:\n+        header('Content-Type: application/json');\n+        http_response_code(404);\n+        echo json_encode(['error' => 'Invalid action']);\n+        break;\n             // Gérer le cas où l'action spécifiée n'est pas reconnue\n             break; \n          \n     } \n"
+                },
+                {
+                    "date": 1690811222879,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -32,14 +32,13 @@\n     case'DeleteProduct';\n          $controller = new ProductController();\n          $controller->DeleteProduct();\n          break; \n-     \n         default:\n         header('Content-Type: application/json');\n         http_response_code(404);\n         echo json_encode(['error' => 'Invalid action']);\n-        break;\n+        \n             // Gérer le cas où l'action spécifiée n'est pas reconnue\n             break; \n          \n     } \n"
+                },
+                {
+                    "date": 1690811298037,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -32,17 +32,17 @@\n     case'DeleteProduct';\n          $controller = new ProductController();\n          $controller->DeleteProduct();\n          break; \n+     case 'getProduct':\n+            $controller = new ProductController();\n+            $controller->getProduct();\n+            break; // Nouveau cas pour l'API REST\n         default:\n-        header('Content-Type: application/json');\n-        http_response_code(404);\n-        echo json_encode(['error' => 'Invalid action']);\n-        \n             // Gérer le cas où l'action spécifiée n'est pas reconnue\n             break; \n          \n-    } \n+    }\n  \n \n } else {\n     $home = new HomeController();\n"
+                },
+                {
+                    "date": 1690811304527,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -37,8 +37,12 @@\n             $controller = new ProductController();\n             $controller->getProduct();\n             break; // Nouveau cas pour l'API REST\n         default:\n+        header('Content-Type: application/json');\n+        http_response_code(404);\n+        echo json_encode(['error' => 'Invalid action']);\n+      \n             // Gérer le cas où l'action spécifiée n'est pas reconnue\n             break; \n          \n     }\n"
+                },
+                {
+                    "date": 1690814642965,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -32,18 +32,9 @@\n     case'DeleteProduct';\n          $controller = new ProductController();\n          $controller->DeleteProduct();\n          break; \n-     case 'getProduct':\n-            $controller = new ProductController();\n-            $controller->getProduct();\n-            break; // Nouveau cas pour l'API REST\n-        default:\n-        header('Content-Type: application/json');\n-        http_response_code(404);\n-        echo json_encode(['error' => 'Invalid action']);\n-      \n-            // Gérer le cas où l'action spécifiée n'est pas reconnue\n+     e\n             break; \n          \n     }\n  \n"
+                },
+                {
+                    "date": 1690814679039,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -32,10 +32,14 @@\n     case'DeleteProduct';\n          $controller = new ProductController();\n          $controller->DeleteProduct();\n          break; \n-     e\n-            break; \n+         case 'getProduct':\n+            $controller = new ProductController();\n+            $controller->getProductById();\n+            break; // Nouveau cas pour l'API REST\n+        \n+            \n          \n     }\n  \n \n"
+                },
+                {
+                    "date": 1690814806476,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -32,9 +32,9 @@\n     case'DeleteProduct';\n          $controller = new ProductController();\n          $controller->DeleteProduct();\n          break; \n-         case 'getProduct':\n+         case 'ge':\n             $controller = new ProductController();\n             $controller->getProductById();\n             break; // Nouveau cas pour l'API REST\n         \n"
+                },
+                {
+                    "date": 1690814812692,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -32,9 +32,9 @@\n     case'DeleteProduct';\n          $controller = new ProductController();\n          $controller->DeleteProduct();\n          break; \n-         case 'ge':\n+         case '':\n             $controller = new ProductController();\n             $controller->getProductById();\n             break; // Nouveau cas pour l'API REST\n         \n"
+                },
+                {
+                    "date": 1690814827414,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -32,9 +32,9 @@\n     case'DeleteProduct';\n          $controller = new ProductController();\n          $controller->DeleteProduct();\n          break; \n-         case '':\n+     case 'getProduct':\n             $controller = new ProductController();\n             $controller->getProductById();\n             break; // Nouveau cas pour l'API REST\n         \n"
+                },
+                {
+                    "date": 1690814847952,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,6 @@\n <?php\n \n-\n require_once(dirname(__DIR__) . '/Autoloader.php');\n \n use CrudPOO\\Controllers\\HomeController;\n use CrudPOO\\Controllers\\ProductController;\n"
+                },
+                {
+                    "date": 1690822613519,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -33,9 +33,9 @@\n          $controller->DeleteProduct();\n          break; \n      case 'getProduct':\n             $controller = new ProductController();\n-            $controller->getProductById();\n+            $controller->getproductById();\n             break; // Nouveau cas pour l'API REST\n         \n             \n          \n"
+                },
+                {
+                    "date": 1690822630718,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -33,9 +33,9 @@\n          $controller->DeleteProduct();\n          break; \n      case 'getProduct':\n             $controller = new ProductController();\n-            $controller->getproductById();\n+            $controller->getProductById();\n             break; // Nouveau cas pour l'API REST\n         \n             \n          \n"
+                },
+                {
+                    "date": 1690824421401,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -33,9 +33,9 @@\n          $controller->DeleteProduct();\n          break; \n      case 'getProduct':\n             $controller = new ProductController();\n-            $controller->getProductById();\n+            $controller->getProduct();\n             break; // Nouveau cas pour l'API REST\n         \n             \n          \n"
+                }
+            ],
+            "date": 1690808663619,
+            "name": "Commit-0",
+            "content": "<?php\n\n\nrequire_once(dirname(__DIR__) . '/Autoloader.php');\n\nuse CrudPOO\\Controllers\\HomeController;\nuse CrudPOO\\Controllers\\ProductController;\n\n\nif (isset($_GET['action'])) {\n\n    $action = $_GET['action'];\n\n    switch ($action) {\n\n     case 'Home';\n            $controller = new HomeController();\n            $controller->Home();\n            break;\n     case'AfficheCrud';\n         $controller = new ProductController();\n         $controller->DisplayProducts();\n         break; \n     case'createProduct';\n         $controller = new ProductController();\n         $controller->addProduct();\n         break; \n     case'EditProduct';\n         $controller = new ProductController();\n         $controller->EditProduct();\n         break; \n    case'DeleteProduct';\n         $controller = new ProductController();\n         $controller->DeleteProduct();\n         break; \n         case 'getProduct':\n            $controller = new ProductController();\n            $controller->getProduct();\n            break; // Nouveau cas pour l'API REST\n        default:\n            // Gérer le cas où l'action spécifiée n'est pas reconnue\n            break; \n         \n    }\n\n\n} else {\n    $home = new HomeController();\n    $home->Home();\n}\n;\n"
+        }
+    ]
+}
